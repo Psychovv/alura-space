@@ -1,9 +1,20 @@
 from django.db import models
 
+
+
 class Fotografia(models.Model):
+
+    OPCOES_CATEGORIA = [ 
+        ("ESTRELA", "Estrela"),
+        ("NEBULOSA", "Nebulosa"),
+        ("GALAXIA", "Galáxia"),
+        ("PLANETA", "Planeta"),
+    ]
+
     nome = models.CharField(max_length=100, null=False, blank=False)
     legenda = models.CharField(max_length=150, null=False, blank=False)
     descricao = models.TextField(null=False, blank=False)
+    categoria = models.CharField(max_length=50, choices=OPCOES_CATEGORIA, null=False, default='')
     foto = models.CharField(max_length=150, null=False, blank=False)
 
     def __str__(self):
