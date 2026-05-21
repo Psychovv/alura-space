@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -11,10 +13,14 @@ class Fotografia(models.Model):
         ("PLANETA", "Planeta"),
     ]
 
+ 
     nome = models.CharField(max_length=100, null=False, blank=False)
     legenda = models.CharField(max_length=150, null=False, blank=False)
+    categoria = models.CharField(max_length=100, choices=OPCOES_CATEGORIA, default='')
     descricao = models.TextField(null=False, blank=False)
-    categoria = models.CharField(max_length=50, choices=OPCOES_CATEGORIA, null=False, default='')
+    foto = models.CharField(max_length=150, null=False, blank=False)
+    publicada = models.BooleanField(default=False)
+    data_fotografia = models.DateTimeField(default=datetime.datetime.now, blank=False)
     foto = models.ImageField(upload_to='fotos/%Y/%m/%d/', null=False, blank=True)
 
     def __str__(self):
